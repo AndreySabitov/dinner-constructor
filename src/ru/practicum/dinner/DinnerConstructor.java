@@ -5,22 +5,14 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class DinnerConstructor {
-    String typeOfDish;
-    String nameOfDish;
     HashMap<String, ArrayList<String>> lunchMenu = new HashMap<>();
     ArrayList<String> dishList = new ArrayList<>();
     ArrayList<String> itemsOfLunch = new ArrayList<>();
+    Random random = new Random();
 
-    void saveDish(String type, String name) {
-        typeOfDish = type;
-        nameOfDish = name;
-        if (!lunchMenu.containsKey(typeOfDish)) {
-            dishList = new ArrayList<>();
-        } else {
-            dishList = lunchMenu.get(typeOfDish);
-        }
+    void saveDish(String typeOfDish, String nameOfDish) {
+        ArrayList<String> dishList = lunchMenu.computeIfAbsent(typeOfDish, k -> new ArrayList<>());
         dishList.add(nameOfDish);
-        lunchMenu.put(typeOfDish, dishList);
     }
 
     void addTypesOfDishesToLunch(String item) {
@@ -34,12 +26,12 @@ public class DinnerConstructor {
         }
     }
 
-    void generateAndPrintCombos(int Combos, Random rand) {
+    void generateAndPrintCombos(int combos) {
         ArrayList<String> lunchCombo = new ArrayList<>();
-        for (int i = 0; i < Combos; i++) {
+        for (int i = 0; i < combos; i++) {
             for (String item : itemsOfLunch) {
                 dishList = lunchMenu.get(item);
-                lunchCombo.add(dishList.get(rand.nextInt(0, dishList.size())));
+                lunchCombo.add(dishList.get(random.nextInt(0, dishList.size())));
             }
             System.out.println(lunchCombo);
             lunchCombo.clear();

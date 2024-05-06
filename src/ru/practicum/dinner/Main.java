@@ -1,6 +1,6 @@
+//Сергей, добрый день! Очень благодарен за прошлые и текущие ревью! Поздравляю с наступающим Днём Победы!
 package ru.practicum.dinner;
 
-import java.util.Random;
 import java.util.Scanner;
 
 
@@ -8,12 +8,10 @@ public class Main {
 
     static DinnerConstructor dc;
     static Scanner scanner;
-    static Random random;
 
     public static void main(String[] args) {
         dc = new DinnerConstructor();
         scanner = new Scanner(System.in);
-        random = new Random();
 
         while (true) {
             printMenu();
@@ -28,6 +26,8 @@ public class Main {
                     break;
                 case "3":
                     return;
+                default:
+                    System.out.println("Такой команды нет!");
             }
         }
     }
@@ -55,7 +55,7 @@ public class Main {
         int numberOfCombos = scanner.nextInt();
         scanner.nextLine();
 
-        System.out.println("Вводите типы блюда, разделяя символом переноса строки (enter). Для завершения ввода введите пустую строку");
+        System.out.println("Вводите типы блюда, разделяя символом переноса строки (enter)." + " Для завершения ввода введите пустую строку");
         String nextItem = scanner.nextLine();
 
         //реализуйте ввод типов блюд
@@ -64,7 +64,7 @@ public class Main {
             nextItem = scanner.nextLine();
         }
 
-        dc.generateAndPrintCombos(numberOfCombos, random);// сгенерируйте комбинации блюд и выведите на экран
+        dc.generateAndPrintCombos(numberOfCombos);// сгенерируйте комбинации блюд и выведите на экран
 
     }
 }
